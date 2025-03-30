@@ -1,0 +1,33 @@
+.slider {
+
+    .slider-item {
+        height: 40vw;
+        background-color: var(--color-pure-white);
+        border-radius: var(--border-radius);
+        font-size: 5vw;
+
+        .slider-title {
+            font-size: 4vw;
+        }
+    }
+
+}
+
+.favorites {
+    width: calc((100vw - 75px) / 4);
+    height: calc((60vw - 75px) / 4);
+    border-radius: var(--border-radius-lvl2);
+    font-size: 4vw;
+    box-shadow: var(--box-shadow);
+    background-color: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+}
+
+.books {
+    width: calc((100vw - 105px) / 4);
+    height: calc((100vw - 105px) / 4);
+    border-radius: var(--border-radius-lvl2);
+    font-size: 4vw;
+    box-shadow: var(--box-shadow);
+    color: var(--ion-color-dark);
+}

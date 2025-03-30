@@ -1,0 +1,33 @@
+#router-outlet {
+    height: calc((100vh - 12vw) - 45px); //45px gap; 50px height of #nav
+    // overflow-x: auto;
+}
+
+#nav {
+    // height: 50px;
+    height: 12vw;
+    // border: 1px solid red;
+
+    #nav-child {
+        // border-radius: 25px;
+        border-radius: 7vw;
+
+        background-color: var(--ion-color-primary);
+        padding-left: 6px;
+        padding-right: 6px;
+
+        .item {
+
+            // height: 38px;
+            // width: 38px;
+            height: 10vw;
+            width: 10vw;
+
+            // border-radius: 20px;
+            border-radius: 6vw;
+            background-color: var(--ion-color-light);
+            font-size: 4vw;
+        }
+    }
+}
+

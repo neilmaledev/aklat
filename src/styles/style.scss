@@ -1,0 +1,21 @@
+@import "./button.scss";
+@import "./card.scss";
+@import "./color.scss";
+@import "./flex.scss";
+@import "./ionic.scss";
+@import "./sizing.scss";
+@import "./spacing.scss";
+@import "./text.scss";
+@import "./variables.scss";
+
+body {
+    background-color: ghostwhite;
+}
+
+.b-red {
+    border: 1px solid red;
+}
+
+.b-blue {
+    border: 1px solid blue;
+}

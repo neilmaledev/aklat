@@ -1,0 +1,7 @@
+{
+  "name": "Aklat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
