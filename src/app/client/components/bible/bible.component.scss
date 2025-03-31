@@ -1,0 +1,8 @@
+.chapters {
+    width: calc((100vw - 137px) / 6);
+    height: calc((100vw - 137px) / 6);
+    border-radius: var(--border-radius-lvl2);
+    font-size: 2vw;
+    box-shadow: var(--box-shadow);
+    color: var(--ion-color-dark);
+}

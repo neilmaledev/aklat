@@ -1,7 +1,8 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './client.component';
 import { HomeComponent } from './components/home/home.component';
+import { BibleComponent } from './components/bible/bible.component';
 
 const routes: Routes = [
     {
@@ -11,6 +12,10 @@ const routes: Routes = [
             {
                 path: '', 
                 component: HomeComponent
+            },
+            {
+                path: 'bible', 
+                component: BibleComponent
             }
         ]
     },
@@ -28,5 +33,6 @@ export class ClientRoutingModule { }
 
 export const ClientArrayOfComponents = [
     ClientComponent,
-    HomeComponent
+    HomeComponent,
+    BibleComponent
 ]

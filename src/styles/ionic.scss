@@ -1,3 +1,7 @@
 ion-content::part(scroll)::-webkit-scrollbar {
     display: none;
  }
+
+ .accordion-group-expand-inset {
+    margin: 0 !important;
+ }

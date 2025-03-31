@@ -12,6 +12,10 @@ body {
     background-color: ghostwhite;
 }
 
+[routerLink] {
+    cursor: pointer;
+}
+
 .b-red {
     border: 1px solid red;
 }
