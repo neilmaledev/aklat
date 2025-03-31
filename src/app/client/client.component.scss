@@ -1,5 +1,5 @@
 #router-outlet {
-    height: calc((100vh - 12vw) - 45px); //45px gap; 50px height of #nav
+    height: calc((100vh - 24vw) - 45px); //45px gap; 24vw(12vw header, 12vw footer)
     // overflow-x: auto;
 }
 

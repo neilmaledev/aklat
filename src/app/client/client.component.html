@@ -1,5 +1,10 @@
-<div class="d-flex flex-gap flex-column p">
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title class="text-bold">Aklat</ion-title>
+    </ion-toolbar>
+</ion-header>
 
+<ion-content>
     <div id="router-outlet">
         <!-- ion-router-outlet is having an issue in child layout -->
         <!-- <ion-router-outlet></ion-router-outlet> -->
@@ -7,21 +12,25 @@
         <!-- router-outlet is a quick fix for the child layout but lose the fancy transition -->
         <router-outlet></router-outlet>
     </div>
+</ion-content>
 
-    <div id="nav" class="d-flex justify-content-center">
+<ion-footer class="p-sm">
 
-        <div id="nav-child" class="d-inline-flex align-items-center flex-gap">
-            <div class="item d-flex align-items-center justify-content-center">
-                <ion-icon name="home-outline"></ion-icon>
-            </div>
-            <div class="item d-flex align-items-center justify-content-center">
-                <ion-icon name="search-outline"></ion-icon>
-            </div>
-            <div class="item d-flex align-items-center justify-content-center">
-                <ion-icon name="settings-outline"></ion-icon>
+    <!-- <ion-toolbar> -->
+        <div id="nav" class="d-flex justify-content-center">
+
+            <div id="nav-child" class="d-inline-flex align-items-center flex-gap">
+                <div class="item d-flex align-items-center justify-content-center">
+                    <ion-icon name="home-outline"></ion-icon>
+                </div>
+                <div class="item d-flex align-items-center justify-content-center">
+                    <ion-icon name="search-outline"></ion-icon>
+                </div>
+                <div class="item d-flex align-items-center justify-content-center">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </div>
             </div>
         </div>
-        
-    </div>
+    <!-- </ion-toolbar> -->
     
-</div>
+</ion-footer>
