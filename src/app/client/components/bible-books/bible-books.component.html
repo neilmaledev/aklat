@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title class="text-bold">Books</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="d-flex flex-column flex-gap p">
+
+    <div class="d-flex flex-gap">
+        <ion-button [fill]="testament.active === 'old' ? 'outline' : 'clear'" shape="round"
+            (click)="testament.change('old')">
+            <ion-label>Old Testament</ion-label>
+        </ion-button>
+
+        <ion-button [fill]="testament.active === 'new' ? 'outline' : 'clear'" shape="round"
+            (click)="testament.change('new')">
+            <ion-label>New Testament</ion-label>
+        </ion-button>
+    </div>
+
+    <div *ngIf="testament.active === 'old'">
+        <ion-accordion-group expand="inset">
+            <ion-accordion *ngFor="let b of bible.books | arrayFilter: arrayFilter.oldTestament" [value]="b.title">
+                <ion-item slot="header" color="light">
+                    <ion-label>{{b.title}}</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <div class="d-flex flex-gap-sm flex-wrap">
+                        <div *ngFor="let c of b.chapters" class="chapters d-flex align-items-center justify-content-center"
+                            routerLink="/bible" [queryParams]="{book: b.id, chapter: c.chapter}">
+                            <div>{{ c.chapter }}</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-accordion>
+        </ion-accordion-group>
+    </div>
+
+    <div *ngIf="testament.active === 'new'">
+        <ion-accordion-group expand="inset">
+            <ion-accordion *ngFor="let b of bible.books | arrayFilter: arrayFilter.newTestament" [value]="b.title">
+                <ion-item slot="header" color="light">
+                    <ion-label>{{b.title}}</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <div class="d-flex flex-gap-sm flex-wrap">
+                        <div *ngFor="let c of b.chapters" class="chapters d-flex align-items-center justify-content-center"
+                            routerLink="/bible" [queryParams]="{book: b.id, chapter: c.chapter}">
+                            <div>{{ c.chapter }}</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-accordion>
+        </ion-accordion-group>
+    </div>
+</div>

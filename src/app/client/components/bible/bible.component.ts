@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router  } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { BibleBooksModal } from './modals/bible.books.modal';
+import kjv from '../../../../data/kjv.json';
 
 @Component({
     selector: 'app-bible',
@@ -8,26 +12,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BibleComponent implements OnInit {
 
-    constructor() { }
+    book: string = '';
+    bookTitle: string = '';
+    chapter: number = 1;
+    bible = kjv;
+    verses: any = [];
 
-    ngOnInit() { }
+    constructor(
+        private route: ActivatedRoute,
+        // private router: Router,
+        private modalCtrl: ModalController
+    ) {}
 
-    books = {
-        old: [
-            {title: 'Genesis', chapters: Array(50).fill('').map((x,i)=>i+1)},
-            {title: 'Exodus', chapters:  Array(40).fill('').map((x,i)=>i+1)}
-        ],
-        new: [
-            {title: 'Matthew', chapters: Array(28).fill('').map((x,i)=>i+1)},
-            {title: 'Mark', chapters:  Array(16).fill('').map((x,i)=>i+1)}
-        ]
-    };
+    ngOnInit() {
+        this.route.queryParams.subscribe(params => {
+            console.log('params', params);
 
-    testament = {
-        active: 'old',
-        change: (testament: string) => {
-            this.testament.active = testament;
-        }
-    };
+            this.book = params['book'];
+            this.chapter = params['chapter'];
 
+            this.setupPage();
+        });
+
+        
+    }
+
+    setupPage() {
+        const book: any = this.bible.books.find((b) => {
+            return b.id === this.book;
+        });
+
+        // console.log(this.chapter, book.chapters)
+        this.bookTitle = book.title;
+        this.verses = book.chapters[(this.chapter - 1)].verses;
+    }
+
+    async booksModal() {
+        const modal = await this.modalCtrl.create({
+          component: BibleBooksModal
+        });
+
+        modal.present();
+    
+        // const { data, role } = await modal.onWillDismiss();
+    
+        // if (role === 'confirm') {
+        //   this.message = `Hello, ${data}!`;
+        // }
+      }
 }

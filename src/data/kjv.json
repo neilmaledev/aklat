@@ -1,0 +1,101 @@
+{
+    "title": "King James Version",
+    "books": [
+        {
+            "id": "genesis",
+            "title": "Genesis",
+            "testament": "old",
+            "chapters": [
+                {
+                    "chapter": 1,
+                    "verses": [
+                        {
+                            "verse": 1,
+                            "text": "In the beginning God created the heaven and the earth."
+                        },
+                        {
+                            "verse": 2,
+                            "text": "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters."
+                        },
+                        {
+                            "verse": 3,
+                            "text": "And God said, Let there be light: and there was light."
+                        },
+                        {
+                            "verse": 4,
+                            "text": "And God saw the light, that it was good: and God divided the light from the darkness."
+                        },
+                        {
+                            "verse": 5,
+                            "text": "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day."
+                        },
+                        {
+                            "verse": 6,
+                            "text": "And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters."
+                        },
+                        {
+                            "verse": 7,
+                            "text": "And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so."
+                        },
+                        {
+                            "verse": 8,
+                            "text": "And God called the firmament Heaven. And the evening and the morning were the second day."
+                        },
+                        {
+                            "verse": 9,
+                            "text": "And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so."
+                        },
+                        {
+                            "verse": 10,
+                            "text": "And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good."
+                        },
+                        {
+                            "verse": 11,
+                            "text": "And God said, Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth: and it was so."
+                        }
+                    ]
+                },
+                {
+                    "chapter": 2,
+                    "verses": [
+                        {
+                            "verse": 1,
+                            "text": "Thus the heavens and the earth were finished, and all the host of them."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "exodus",
+            "title": "Exodus",
+            "testament": "old",
+            "chapters": [
+                {
+                    "chapter": 1,
+                    "verses": [
+                        {
+                            "verse": 1,
+                            "text": "Now these are the names of the children of Israel, which came into Egypt; every man and his household came with Jacob."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Matthew",
+            "testament": "new",
+            "chapters": [
+                {
+                    "chapter": 1,
+                    "verses": [
+                        {
+                            "verse": 1,
+                            "text": "The book of the generation of Jesus Christ, the son of David, the son of Abraham."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

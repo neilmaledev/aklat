@@ -1,0 +1,74 @@
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Welcome</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> -->
+<ion-content>
+    <div class="card">
+        <div class="card-header text-right">
+            <ion-button color="medium" shape="round" size="small" (click)="cancel()">
+                <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+            </ion-button>
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-column flex-gap">
+                <div class="d-flex flex-gap">
+                    <ion-button [fill]="testament.active === 'old' ? 'outline' : 'clear'" shape="round"
+                        (click)="testament.change('old')">
+                        <ion-label>Old Testament</ion-label>
+                    </ion-button>
+            
+                    <ion-button [fill]="testament.active === 'new' ? 'outline' : 'clear'" shape="round"
+                        (click)="testament.change('new')">
+                        <ion-label>New Testament</ion-label>
+                    </ion-button>
+                </div>
+
+                <div *ngIf="testament.active === 'old'">
+                    <ion-accordion-group expand="inset">
+                        <ion-accordion *ngFor="let b of bible.books | arrayFilter: arrayFilter.oldTestament" [value]="b.title">
+                            <ion-item slot="header" color="light">
+                                <ion-label>{{b.title}}</ion-label>
+                            </ion-item>
+                            <div class="ion-padding" slot="content">
+                                <div class="d-flex flex-gap-sm flex-wrap">
+                                    <div *ngFor="let c of b.chapters" class="chapters d-flex align-items-center justify-content-center"
+                                        routerLink="/bible" [queryParams]="{book: b.id, chapter: c.chapter}"
+                                        (click)="confirm()">
+                                        <div>{{ c.chapter }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-accordion>
+                    </ion-accordion-group>
+                </div>
+    
+                <div *ngIf="testament.active === 'new'">
+                    <ion-accordion-group expand="inset">
+                        <ion-accordion *ngFor="let b of bible.books | arrayFilter: arrayFilter.newTestament" [value]="b.title">
+                            <ion-item slot="header" color="light">
+                                <ion-label>{{b.title}}</ion-label>
+                            </ion-item>
+                            <div class="ion-padding" slot="content">
+                                <div class="d-flex flex-gap-sm flex-wrap">
+                                    <div *ngFor="let c of b.chapters" class="chapters d-flex align-items-center justify-content-center"
+                                        routerLink="/bible" [queryParams]="{book: b.id, chapter: c.chapter}"
+                                        (click)="confirm()">
+                                        <div>{{ c.chapter }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-accordion>
+                    </ion-accordion-group>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</ion-content>

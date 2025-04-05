@@ -9,10 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ClientRoutingModule, ClientArrayOfComponents } from './client/client-routing.module';
 
+import { ArrayFilterPipe } from './pipes/array-filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ClientArrayOfComponents
+    ClientArrayOfComponents,
+    ArrayFilterPipe
   ],
   imports: [
     BrowserModule, 
