@@ -25,7 +25,11 @@
                     <ion-icon name="home-outline"></ion-icon>
                 </div>
                 <div class="item d-flex align-items-center justify-content-center">
-                    <ion-icon name="search-outline"></ion-icon>
+                    <ion-button id="open-modal" (click)="booksModal()"
+                        color="medium" shape="round" size="small">
+                        <ion-icon slot="icon-only" name="book-outline"></ion-icon>
+                    </ion-button>
+                    <!-- <ion-icon name="book-outline"></ion-icon> -->
                 </div>
                 <div class="item d-flex align-items-center justify-content-center">
                     <ion-icon name="settings-outline"></ion-icon>

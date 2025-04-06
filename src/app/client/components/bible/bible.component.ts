@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router  } from '@angular/router';
+import { ActivatedRoute  } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { BibleBooksModal } from './modals/bible.books.modal';
 import kjv from '../../../../data/kjv.json';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'app-bible',
@@ -20,44 +21,66 @@ export class BibleComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        // private router: Router,
-        private modalCtrl: ModalController
+        private modalCtrl: ModalController,
+        private storageSvc: StorageService
     ) {}
 
     ngOnInit() {
-        this.route.queryParams.subscribe(params => {
+        this.route.queryParams.subscribe(async (params) => {
             console.log('params', params);
 
             this.book = params['book'];
             this.chapter = params['chapter'];
 
             this.setupPage();
+            this.setRecents();
         });
-
-        
     }
 
-    setupPage() {
+    private setupPage() {
         const book: any = this.bible.books.find((b) => {
             return b.id === this.book;
         });
 
-        // console.log(this.chapter, book.chapters)
         this.bookTitle = book.title;
-        this.verses = book.chapters[(this.chapter - 1)].verses;
+
+        const chapter = book.chapters.find((c: any) => {
+            return c.chapter == this.chapter;
+        });
+
+        this.verses = chapter.verses;
+    }
+
+    private async setRecents() {
+        let bibleRecents = await this.storageSvc.get('bible.recents');
+
+        if (bibleRecents === null) {
+            bibleRecents = [];
+        }
+
+        bibleRecents.push({
+            bookTitle: this.bookTitle,
+            chapter: this.chapter
+        });
+
+        bibleRecents = bibleRecents.filter((item:any, index:Number, self:any) =>
+            index === self.findIndex((obj:any) => (obj.bookTitle === item.bookTitle && obj.chapter === item.chapter))
+        );
+
+        if (bibleRecents.length > 4) {
+            bibleRecents = bibleRecents.slice(-4);
+        }
+
+        bibleRecents = await this.storageSvc.set('bible.recents', bibleRecents);
     }
 
     async booksModal() {
         const modal = await this.modalCtrl.create({
-          component: BibleBooksModal
+          component: BibleBooksModal,
+          breakpoints: [0, 0.90],
+          initialBreakpoint: 0.90
         });
 
         modal.present();
-    
-        // const { data, role } = await modal.onWillDismiss();
-    
-        // if (role === 'confirm') {
-        //   this.message = `Hello, ${data}!`;
-        // }
-      }
+    }
 }

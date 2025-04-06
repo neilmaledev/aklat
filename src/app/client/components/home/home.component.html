@@ -40,31 +40,15 @@
     <div class="d-flex flex-column flex-gap-sm">
 
         <div class="d-flex flex-gap-sm align-items-center">
-            <ion-label class="subtitle flex-fill">Favorites</ion-label>
+            <ion-label class="subtitle flex-fill">Recently Viewed</ion-label>
         </div>
     
         <div class="d-flex flex-gap flex-wrap">
-            <div class="favorites d-flex align-items-center justify-content-center">
+            <div *ngFor="let b of bibleRecents" class="bible-recents d-flex align-items-center justify-content-center">
+                <!-- todo routerlink -->
                 <span>
-                    PSA
-                </span>
-            </div>
-
-            <div class="favorites d-flex align-items-center justify-content-center">
-                <span>
-                    DAN
-                </span>
-            </div>
-
-            <div class="favorites d-flex align-items-center justify-content-center">
-                <span>
-                    REV
-                </span>
-            </div>
-
-            <div class="favorites d-flex align-items-center justify-content-center">
-                <span>
-                    JOB
+                    {{ b.shortBookTitle }}
+                    {{ b.chapter }}
                 </span>
             </div>
         </div>
