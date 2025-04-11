@@ -27,7 +27,7 @@
                 <div class="ion-padding" slot="content">
                     <div class="d-flex flex-gap-sm flex-wrap">
                         <div *ngFor="let c of b.chapters" class="chapters d-flex align-items-center justify-content-center"
-                            routerLink="/bible" [queryParams]="{book: b.id, chapter: c.chapter}">
+                            routerLink="/bible" [queryParams]="{bookId: b.id, chapter: c.chapter}">
                             <div>{{ c.chapter }}</div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="ion-padding" slot="content">
                     <div class="d-flex flex-gap-sm flex-wrap">
                         <div *ngFor="let c of b.chapters" class="chapters d-flex align-items-center justify-content-center"
-                            routerLink="/bible" [queryParams]="{book: b.id, chapter: c.chapter}">
+                            routerLink="/bible" [queryParams]="{bookId: b.id, chapter: c.chapter}">
                             <div>{{ c.chapter }}</div>
                         </div>
                     </div>

@@ -43,14 +43,13 @@
             <ion-label class="subtitle flex-fill">Recently Viewed</ion-label>
         </div>
     
-        <div class="d-flex flex-gap flex-wrap">
-            <div *ngFor="let b of bibleRecents" class="bible-recents d-flex align-items-center justify-content-center">
-                <!-- todo routerlink -->
-                <span>
-                    {{ b.shortBookTitle }}
-                    {{ b.chapter }}
-                </span>
-            </div>
+        <div class="d-flex flex-gap">
+            <!-- todo routerlink -->
+            <ion-button *ngFor="let b of bibleRecents" 
+                [fill]="'outline'" shape="round"
+                routerLink="/bible" [queryParams]="{bookId: b.id, chapter: b.chapter}">
+                <ion-label>{{ b.shortTitle }} {{ b.chapter }}</ion-label>
+            </ion-button>
         </div>
     </div>
 
@@ -119,7 +118,7 @@
         </div>
     </div>
 
-    <div class="d-flex flex-column flex-gap-sm">
+    <!-- <div class="d-flex flex-column flex-gap-sm">
         <div class="d-flex flex-gap-sm align-items-center">
             <div class="title flex-fill">New Testament</div>
             <ion-label color="medium">View All</ion-label>
@@ -181,6 +180,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>

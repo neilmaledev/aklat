@@ -1,29 +1,27 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <div class="d-flex align-items-center">
-            <!-- <div class="title">{{ bookTitle }} {{ chapter }}</div> -->
             <div>
                 <ion-title class="text-bold">
-                    {{ bookTitle }} {{ chapter }}
+                    {{ book?.title }} {{ book?.chapters[(params.chapter - 1)]?.chapter }}
                 </ion-title>
             </div>
 
             <div class="flex-fill text-right">
-                <ion-button color="medium" shape="round" size="small">
+                <ion-button color="medium" shape="round" size="small"
+                    routerLink="/bible" [queryParams]="previous"
+                    [disabled]="!previous">
                     <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
                 </ion-button>
 
-                <ion-button color="medium" shape="round" size="small">
+                <ion-button color="medium" shape="round" size="small"
+                    routerLink="/bible" [queryParams]="next"
+                    [disabled]="!next">
                     <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
                 </ion-button>
-                
+
                 <ion-button color="medium" shape="round" size="small">
                     <ion-icon slot="icon-only" name="language-outline"></ion-icon>
-                </ion-button>
-
-                <ion-button id="open-modal" (click)="booksModal()"
-                    color="medium" shape="round" size="small">
-                    <ion-icon slot="icon-only" name="book-outline"></ion-icon>
                 </ion-button>
             </div>
         </div>
@@ -34,7 +32,7 @@
     <div class="card">
         <div class="card-body">
             <div class="verses-wrap">
-                <span *ngFor="let v of verses">
+                <span *ngFor="let v of book?.chapters[(params.chapter - 1)]?.verses">
                     <span class="verse-num">{{ v.verse }}</span>
                     <span>{{ v.text }}</span>
                 </span>
@@ -42,8 +40,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.25, 0.5, 0.75]">
     <ng-template>

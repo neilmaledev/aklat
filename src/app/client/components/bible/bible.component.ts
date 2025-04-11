@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute  } from '@angular/router';
-import { ModalController } from '@ionic/angular';
-import { BibleBooksModal } from './modals/bible.books.modal';
+import { ActivatedRoute, Router } from '@angular/router';
 import kjv from '../../../../data/kjv.json';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -12,43 +10,76 @@ import { StorageService } from 'src/app/services/storage.service';
     styleUrls: ['./bible.component.scss'],
 })
 export class BibleComponent implements OnInit {
-
-    book: string = '';
-    bookTitle: string = '';
-    chapter: number = 1;
+    params: any;
+    previous: any;
+    next: any;
+    book: any;
     bible = kjv;
     verses: any = [];
 
     constructor(
         private route: ActivatedRoute,
-        private modalCtrl: ModalController,
+        private router: Router,
         private storageSvc: StorageService
     ) {}
 
     ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
-            console.log('params', params);
-
-            this.book = params['book'];
-            this.chapter = params['chapter'];
-
+            this.params = {
+                ...params,
+                chapter: parseInt(params['chapter'])
+            };
+            
             this.setupPage();
-            this.setRecents();
         });
     }
 
     private setupPage() {
-        const book: any = this.bible.books.find((b) => {
-            return b.id === this.book;
+        this.book = this.bible.books.find((b) => {
+            return b.id === this.params?.bookId;
         });
 
-        this.bookTitle = book.title;
+        // check if book exists; else redirect to /bible-books
+        if (!this.book) {
+            this.router.navigate(['/bible-books']);
+            return;
+        }
 
-        const chapter = book.chapters.find((c: any) => {
-            return c.chapter == this.chapter;
-        });
+        // check if book chapter exists; else redirect to book chapter 1
+        if (isNaN(this.params.chapter) || this.params.chapter > this.book.chapters.length) {
+            this.router.navigate(['/bible'], {
+                queryParams: {
+                    bookId: this.params.bookId, chapter: 1
+                }
+            });
+            return;
+        }
 
-        this.verses = chapter.verses;
+        this.setupPreviousNext();
+        this.setRecents();
+    }
+
+    private setupPreviousNext() {
+        this.previous = null;
+        this.next = null;
+
+        const chapter = parseInt(this.params?.chapter);
+
+        if (chapter != 1) {
+            this.previous = {
+                bookId: this.params?.bookId,
+                chapter: chapter - 1
+            };
+        }
+
+        if (chapter < this.book?.chapters.length) {
+            this.next = {
+                bookId: this.params?.bookId,
+                chapter: chapter + 1
+            };
+        }
+
+        console.log(this.previous, this.next);
     }
 
     private async setRecents() {
@@ -59,12 +90,13 @@ export class BibleComponent implements OnInit {
         }
 
         bibleRecents.push({
-            bookTitle: this.bookTitle,
-            chapter: this.chapter
+            id: this.book?.id,
+            title: this.book?.title,
+            chapter: this.params?.chapter
         });
 
         bibleRecents = bibleRecents.filter((item:any, index:Number, self:any) =>
-            index === self.findIndex((obj:any) => (obj.bookTitle === item.bookTitle && obj.chapter === item.chapter))
+            index === self.findIndex((obj:any) => (obj.title === item.title && obj.chapter === item.chapter))
         );
 
         if (bibleRecents.length > 4) {
@@ -72,15 +104,5 @@ export class BibleComponent implements OnInit {
         }
 
         bibleRecents = await this.storageSvc.set('bible.recents', bibleRecents);
-    }
-
-    async booksModal() {
-        const modal = await this.modalCtrl.create({
-          component: BibleBooksModal,
-          breakpoints: [0, 0.90],
-          initialBreakpoint: 0.90
-        });
-
-        modal.present();
     }
 }

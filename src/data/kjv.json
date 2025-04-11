@@ -63,6 +63,16 @@
                             "text": "Thus the heavens and the earth were finished, and all the host of them."
                         }
                     ]
+                },
+                {
+                    "chapter": 3,
+                    "title": "The Fall",
+                    "verses": [
+                        {
+                            "verse": 1,
+                            "text": "Now the serpent was more subtil than any beast of the field which the LORD God had made. And he said unto the woman, Yea, hath God said, Ye shall not eat of every tree of the garden?"
+                        }
+                    ]
                 }
             ]
         },
@@ -92,6 +102,24 @@
             ]
         },
         {
+            "id": "leviticus",
+            "title": "Leviticus",
+            "testament": "old",
+            "chapters": [
+                {
+                    "chapter": 1,
+                    "title": "Sacrifices",
+                    "verses": [
+                        {
+                            "verse": 1,
+                            "text": "And the LORD called unto Moses, and spake unto him out of the tabernacle of the congregation, saying,"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "matthew",
             "title": "Matthew",
             "testament": "new",
             "chapters": [

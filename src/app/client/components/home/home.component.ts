@@ -22,10 +22,10 @@ export class HomeComponent implements OnInit {
 
     private async setBibleRecents() {
         this.bibleRecents = await this.storageSvc.get('bible.recents') || [];
-        
+
         for (let b of this.bibleRecents) {
-            let trimmedBookTitle = b.bookTitle.trim().replace(/\s+/g, "");
-            b.shortBookTitle = trimmedBookTitle.slice(0, 3).toUpperCase();
+            let trimmedTitle = b.title.trim().replace(/\s+/g, "");
+            b.shortTitle = trimmedTitle.slice(0, 3).toUpperCase();
         }
 
         console.log('4444', this.bibleRecents);
